@@ -3,6 +3,20 @@ import './Navbar.css'
 
 export const Navbar = () => (
   <nav className="navbar">
+    <div id="menuToggle">
+      <input type="checkbox" />
+      <span></span>
+      <span></span>
+      <span></span>
+      <ul id="menu">
+        <a href="#mytodos">
+          <li>My to-dos</li>
+        </a>
+        <a href="#newtodo">
+          <li>New to-do</li>
+        </a>
+      </ul>
+    </div>
     <ul className="navbar-links">
       <li>
         <a className="logo" href="#logo">

@@ -6,9 +6,11 @@
 }
 
 .image-container{
-    width: 800px;
-    height: 200px;
-    margin-top: 10vh;
+  min-height: 100%;
+  min-width: 1024px;
+	
+  width: 100%;
+  height: auto;
 }
 
 .image-container img{
@@ -21,6 +23,10 @@
     color: white;
     text-shadow: 1px 1px 2px black;
     opacity: 90%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 

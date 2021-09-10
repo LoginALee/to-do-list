@@ -10,12 +10,12 @@
   min-width: 1024px;
 	
   width: 100%;
-  height: auto;
+  height: 100%;
 }
 
 .image-container img{
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 .phrase-container{

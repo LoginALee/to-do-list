@@ -5,6 +5,7 @@ import NewToDo from './pages/NewToDo'
 import MyToDos from './pages/MyToDos'
 import WhyUs from './pages/WhyUs'
 import SignUp from './pages/SignUp'
+import Login from './pages/Login'
 import LandingPage from './pages/LandingPage'
 import { Navbar } from './components/Navbar/Navbar'
 
@@ -18,7 +19,7 @@ function App() {
             <WhyUs />
           </Route>
           <Route path="/login">
-            <div>Missing</div>
+            <Login />
           </Route>
           <Route path="/signup">
             <SignUp />

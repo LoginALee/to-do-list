@@ -19,8 +19,9 @@ nav {
 }
 
 a {
+  font-size: 1.4rem;
   text-decoration: none;
-  color:black;
+  color:#515752;
   font-weight: bold;
   padding: 1rem;
 }

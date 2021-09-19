@@ -3,6 +3,7 @@ import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import NewToDo from './pages/NewToDo'
 import MyToDos from './pages/MyToDos'
+import WhyUs from './pages/WhyUs'
 import LandingPage from './pages/LandingPage'
 import { Navbar } from './components/Navbar/Navbar'
 
@@ -13,7 +14,7 @@ function App() {
         <Navbar />
         <Switch>
           <Route path="/whyus">
-            <div>Missing</div>
+            <WhyUs />
           </Route>
           <Route path="/login">
             <div>Missing</div>

@@ -1,0 +1,58 @@
+.mainContainer{
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.3rem;
+}
+
+.formContainer{
+    border: 1px solid black;
+    margin-top: 5em;
+    box-shadow: 10px 5px 5px gray;
+    width: 25em;
+}
+
+.inputsContainer{
+  margin: 0 auto;
+}
+
+.inputsContainer li{
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input, .button {
+  font: inherit;
+  border: 0;
+}
+  
+.form {
+  display: flex; 
+  justify-content: center;
+  grid-column: 2;
+}
+  
+.input {
+  flex-grow: 1;
+  padding: 0.5em 0.75em;
+}
+  
+.button {
+  padding: 0.5em 0.75em;
+  background: #8ff7a7;
+  margin-left: auto;
+}
+
+.inputs-container > li:not(:last-child) {
+    margin-bottom: 20px;
+} 
+
+.inputs-container li label,
+.inputs-container li p {
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}

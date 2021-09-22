@@ -1,13 +1,13 @@
 import React from 'react'
-import './WhyUs.css'
+import styles from './WhyUs.module.css'
 
 const WhyUs = () => (
-  <div className="main-container">
-    <div className="image-container">
+  <div className={styles.mainContainer}>
+    <div className={styles.imageContainer}>
       <img src="/WhyUs.jpg" alt="whyUs background" />
     </div>
-    <div className="text-container">
-      <section className="ideas-section">
+    <div className={styles.textContainer}>
+      <section className={styles.section}>
         <h2>Effortless, ideas translation</h2>
         <p>
           As easy as creating a new to-do and adding ideas on the go. You can
@@ -16,7 +16,7 @@ const WhyUs = () => (
         </p>
       </section>
 
-      <section className="dreams-section">
+      <section className={styles.section}>
         <h2>Anything is possible</h2>
         <p>
           In order for a dream to come true, you just need to make an action
@@ -26,7 +26,7 @@ const WhyUs = () => (
         </p>
       </section>
 
-      <section className="app-section">
+      <section className={styles.section}>
         <h2>No charges, free to use</h2>
         <p>
           Our goal is for more people to archive them goals, so our application

@@ -1,14 +1,21 @@
-.form-container{
+.mainContainer{
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.3rem;
+}
+
+.formContainer{
     border: 1px solid black;
     margin-top: 5em;
     box-shadow: 10px 5px 5px gray;
+    width: 25em;
 }
 
-.inputs-container{
+.inputsContainer{
   margin: 0 auto;
 }
 
-.inputs-container li{
+.inputsContainer li{
   list-style-type: none;
   padding: 0;
   display: flex;
@@ -16,22 +23,23 @@
   align-items: center;
 }
 
-input, button {
+.input, .button {
   font: inherit;
   border: 0;
 }
   
-form {
+.form {
   display: flex; 
+  justify-content: center;
   grid-column: 2;
 }
   
-input {
+.input {
   flex-grow: 1;
   padding: 0.5em 0.75em;
 }
   
-button {
+.button {
   padding: 0.5em 0.75em;
   background: #8ff7a7;
   margin-left: auto;

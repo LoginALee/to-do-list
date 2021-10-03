@@ -4,6 +4,12 @@
   font-size: 1.8rem;
   display: flex;
   justify-content: center;
+  flex-direction: row;
+}
+
+.secondContainer{
+  display: flex;
+  flex-direction: column;
 }
 
 .mainContainer > *{
@@ -12,7 +18,7 @@
 }
 
 .plus{
-  margin-top: 2.8em;
+  margin-top: 0.1em;
   margin-left: 0.3em;
   height: 50px;
   width: 50px;
@@ -29,3 +35,57 @@
 .plus:active {
   transform: translateY(4px);
  }
+
+.formContainer{
+    border: 1px solid black;
+    margin-top: 5em;
+    box-shadow: 10px 5px 5px gray;
+    width: 25em;
+    margin-top: 1em;
+}
+
+.inputsContainer{
+  margin: 0 auto;
+}
+
+.inputsContainer li{
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input, .button {
+  font: inherit;
+  border: 0;
+}
+  
+.form {
+  display: flex; 
+  justify-content: center;
+  grid-column: 2;
+}
+  
+.input {
+  flex-grow: 1;
+  padding: 0.5em 0.75em;
+}
+  
+.button {
+  padding: 0.5em 0.75em;
+  background: #8ff7a7;
+  margin-left: auto;
+}
+
+.inputs-container > li:not(:last-child) {
+    margin-bottom: 20px;
+} 
+
+.inputs-container li label,
+.inputs-container li p {
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
+  text-transform: uppercase;
+}

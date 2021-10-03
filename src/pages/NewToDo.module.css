@@ -1,0 +1,31 @@
+.mainContainer{
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.8rem;
+  display: flex;
+  justify-content: center;
+}
+
+.mainContainer > *{
+  margin-top: 2.7em;
+  text-align: center;
+}
+
+.plus{
+  margin-top: 2.8em;
+  margin-left: 0.3em;
+  height: 50px;
+  width: 50px;
+  line-height: 50px;
+  font-size: 2em;
+  border-radius: 50%;
+  background-color: #8ff7a7;
+  color: white;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.2), 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12);
+}
+
+.plus:active {
+  transform: translateY(4px);
+ }

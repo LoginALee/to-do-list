@@ -76,6 +76,7 @@
   padding: 0.5em 0.75em;
   background: #8ff7a7;
   margin-left: auto;
+  cursor: pointer;
 }
 
 .inputs-container > li:not(:last-child) {

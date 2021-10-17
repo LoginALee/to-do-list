@@ -1,0 +1,32 @@
+.mainContainer{
+  width: 100vw;
+  height: 100vh;
+  font-size: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-basis: 100%;
+}
+
+.secondContainer{
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.toDosElements{
+  border: 2px solid #8ff7a7;;
+  padding: 12px;
+  margin-bottom: 1em;
+}
+
+.toDosElements li{
+  list-style: none;
+}
+
+
+.mainContainer > *{
+  margin-top: 2.7em;
+  text-align: center;
+}

@@ -1,12 +1,7 @@
 import './App.css'
 import React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import NewToDo from './pages/NewToDo'
-import MyToDos from './pages/MyToDos'
-import WhyUs from './pages/WhyUs'
-import SignUp from './pages/SignUp'
-import Login from './pages/Login'
-import LandingPage from './pages/LandingPage'
+import routes from './config/routes'
 import { Navbar } from './components/Navbar/Navbar'
 
 function App() {
@@ -15,24 +10,13 @@ function App() {
       <div className="App">
         <Navbar />
         <Switch>
-          <Route path="/whyus">
-            <WhyUs />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/signup">
-            <SignUp />
-          </Route>
-          <Route path="/newtodo">
-            <NewToDo />
-          </Route>
-          <Route path="/todos">
-            <MyToDos />
-          </Route>
-          <Route path="/">
-            <LandingPage />
-          </Route>
+          {routes.map((route) => (
+            <Route
+              key={route.path}
+              path={route.path}
+              component={route.component}
+            />
+          ))}
         </Switch>
       </div>
     </Router>

@@ -28,10 +28,10 @@ export async function insecureFetchFromAPI(path = '') {
   return res
 }
 
-export async function insecurePatchFromAPI(path = '') {
+export async function insecurePatchFromAPI(path = '', data: any) {
   const requestURL = getApiUrl(path)
   const res = await axios
-    .patch(requestURL, {
+    .patch(requestURL, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -42,10 +42,10 @@ export async function insecurePatchFromAPI(path = '') {
   return res
 }
 
-export async function insecurePostToAPI(path = '') {
+export async function insecurePostToAPI(path = '', data: any) {
   const requestURL = getApiUrl(path)
   const res = await axios
-    .post(requestURL, {
+    .post(requestURL, data, {
       headers: {
         'Content-Type': 'application/json',
       },
@@ -84,10 +84,10 @@ export async function fetchFromAPI(token: string, path: string) {
   return res
 }
 
-export async function postToAPI(token: string, path: string) {
+export async function postToAPI(token: string, path: string, data: any) {
   const requestURL = getApiUrl(path)
   const res = await axios
-    .post(requestURL, {
+    .post(requestURL, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',
@@ -98,10 +98,10 @@ export async function postToAPI(token: string, path: string) {
   return res
 }
 
-export async function patchToAPI(token: string, path: string) {
+export async function patchToAPI(token: string, path: string, data: any) {
   const requestURL = getApiUrl(path)
   const res = await axios
-    .patch(requestURL, {
+    .patch(requestURL, data, {
       headers: {
         Authorization: `Bearer ${token}`,
         'Content-Type': 'application/json',

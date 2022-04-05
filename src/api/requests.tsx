@@ -1,3 +1,8 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import axios from 'axios'
 
 const parseJSON = (resp: any) => (resp.json ? resp.json() : resp)
@@ -28,7 +33,7 @@ export async function insecureFetchFromAPI(path = '') {
   return res
 }
 
-export async function insecurePatchFromAPI(path = '', data: any) {
+export async function insecurePatchFromAPI(data: any, path = '') {
   const requestURL = getApiUrl(path)
   const res = await axios
     .patch(requestURL, data, {
@@ -42,7 +47,7 @@ export async function insecurePatchFromAPI(path = '', data: any) {
   return res
 }
 
-export async function insecurePostToAPI(path = '', data: any) {
+export async function insecurePostToAPI(data: any, path = '') {
   const requestURL = getApiUrl(path)
   const res = await axios
     .post(requestURL, data, {

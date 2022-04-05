@@ -1,11 +1,15 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useReducer } from 'react'
 
 const user = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).user
+  ? JSON.parse(localStorage.getItem('currentUser') ?? '').user
   : ''
 
 const token = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser')).auth_token
+  ? JSON.parse(localStorage.getItem('currentUser') ?? '').auth_token
   : ''
 
 export const initialState = {

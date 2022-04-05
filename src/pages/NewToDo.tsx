@@ -1,27 +1,37 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useState } from 'react'
 import styles from './NewToDo.module.css'
 import toDos from '../lib/fakeDB'
 
-const NewToDo = () => {
+interface Itask {
+  name: string
+  createdAt: Date
+}
+
+function NewToDo() {
   const [showForm, setShowForm] = useState(false)
-  const [form] = useState([])
+  const [form] = useState<Itask | any>([])
   const [numberOfTask, setNumberOfTask] = useState(1)
 
   const showFormHandler = () => {
     setShowForm(!showForm)
   }
 
-  const submitForm = (e) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const tasks = []
-    for (let i = 0; i < e.target.length; i += 1) {
-      if (e.target[i].name.includes('task')) {
-        tasks.push({ name: e.target[i].value, createdAt: new Date() })
+    const tasks: Itask[] = []
+    const element = e.target as unknown as HTMLInputElement
+
+    for (let i = 0; i < e?.target?.length; i += 1) {
+      if (element[i].name.includes('task')) {
+        tasks.push({ name: element[i].value, createdAt: new Date() })
       }
     }
     const newTodo = {
       id: toDos.length + 1,
-      name: e.target[0].value,
+      name: element[0].value,
       tasks,
     }
     toDos.push(newTodo)
@@ -44,7 +54,7 @@ const NewToDo = () => {
 
     li.appendChild(label)
     li.appendChild(input)
-    addTaskBtn.before(li)
+    addTaskBtn?.before(li)
   }
 
   return (
@@ -66,24 +76,28 @@ const NewToDo = () => {
             <div className={styles.formContainer}>
               <ul id="toDoList" className={styles.inputsContainer}>
                 <li>
-                  <label htmlFor="to_do_name">To-do name:</label>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    name="to_do_name"
-                    id="to_do_name"
-                    value={form.name}
-                  />
+                  <label htmlFor="to_do_name">
+                    To-do name:
+                    <input
+                      className={styles.input}
+                      type="text"
+                      name="to_do_name"
+                      id="to_do_name"
+                      value={form?.name}
+                    />
+                  </label>
                 </li>
                 <li>
-                  <label htmlFor="task1">Task:</label>
-                  <input
-                    className={styles.input}
-                    type="text"
-                    name="task1"
-                    id="task1"
-                    value={form.task1}
-                  />
+                  <label htmlFor="task1">
+                    Task:
+                    <input
+                      className={styles.input}
+                      type="text"
+                      name="task1"
+                      id="task1"
+                      value={form?.task1}
+                    />
+                  </label>
                 </li>
                 <button
                   id="addTaskButton"

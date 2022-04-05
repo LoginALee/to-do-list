@@ -1,6 +1,19 @@
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useReducer } from 'react'
+import { AuthReducer } from './reducer'
 
-const AuthStateContext = React.createContext({})
+const initialState = {
+  userDetails: {
+    user: {
+      email: '',
+    },
+  },
+  token: '',
+  loading: false,
+  errorMessage: null,
+}
+
+const AuthStateContext = React.createContext(initialState)
 const AuthDispatchContext = React.createContext({})
 
 export function useAuthState() {
@@ -21,7 +34,7 @@ export function useAuthDispatch() {
   return context
 }
 
-export const AuthProvider = ({ children }) => {
+export function AuthProvider({ children }) {
   const [user, dispatch] = useReducer(AuthReducer, initialState)
 
   return (

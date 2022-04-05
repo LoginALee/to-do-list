@@ -1,3 +1,7 @@
+/* eslint-disable @typescript-eslint/no-unsafe-return */
+/* eslint-disable @typescript-eslint/no-unsafe-member-access */
+/* eslint-disable @typescript-eslint/no-unsafe-call */
+/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import { insecurePostToAPI } from '../api/requests'
 
 const ROOT_URL = process.env.API_URL || ''
@@ -25,7 +29,7 @@ export async function loginUser(dispatch, loginPayload) {
 }
 
 export async function logout(dispatch) {
-  dispatch({ type: 'LOGOUT' })
+  await dispatch({ type: 'LOGOUT' })
   localStorage.removeItem('currentUser')
   localStorage.removeItem('token')
 }

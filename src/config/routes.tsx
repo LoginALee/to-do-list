@@ -9,26 +9,32 @@ const routes = [
   {
     path: '/',
     component: LandingPage,
+    isPrivate: false,
   },
   {
     path: '/login',
     component: Login,
+    isPrivate: false,
   },
   {
     path: '/whyus',
     component: WhyUs,
+    isPrivate: false,
   },
   {
     path: '/signup',
     component: SignUp,
+    isPrivate: false,
   },
   {
     path: '/newtodo',
     component: NewToDo,
+    isPrivate: true,
   },
   {
     path: '/todos',
     component: MyToDos,
+    isPrivate: true,
   },
   {
     path: '/*',

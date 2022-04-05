@@ -1,10 +1,6 @@
 {
-  "plugins": [
-      "react",
-      "jest",
-      "testing-library"
-   ],
-   "rules": {
-     "react/prop-types": 0
-   }
- }
+  "plugins": ["react", "testing-library"],
+  "rules": {
+    "react/prop-types": 0
+  }
+}

@@ -1,8 +1,7 @@
 {
   "env": {
     "browser": true,
-    "es2021": true,
-    "jest/globals": true
+    "es2021": true
   },
   "parser": "@typescript-eslint/parser",
   "plugins": ["@typescript-eslint", "react", "prettier"],
@@ -11,9 +10,8 @@
       "files": ["*.ts", "*.tsx"],
       "extends": [
         "react-app",
-        "react-app/jest",
-        "plugin:jest/recommended",
         "airbnb",
+        "eslint:recommended",
         "airbnb-typescript",
         "plugin:import/typescript",
         "plugin:@typescript-eslint/recommended",

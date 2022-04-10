@@ -7,11 +7,6 @@ import LandingPage from '../pages/LandingPage'
 
 const routes = [
   {
-    path: '/',
-    component: LandingPage,
-    isPrivate: false,
-  },
-  {
     path: '/login',
     component: Login,
     isPrivate: false,
@@ -35,6 +30,11 @@ const routes = [
     path: '/todos',
     component: MyToDos,
     isPrivate: true,
+  },
+  {
+    path: '/',
+    component: LandingPage,
+    isPrivate: false,
   },
   {
     path: '/*',

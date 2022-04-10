@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-misused-promises */
 /* eslint-disable react/destructuring-assignment */
 /* eslint-disable @typescript-eslint/no-unsafe-call */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
@@ -7,14 +8,14 @@ import styles from './Login.module.css'
 import { loginUser, useAuthState, useAuthDispatch } from '../context'
 
 function Login(props) {
-  const [email, setEmail] = useState('')
+  const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useAuthDispatch()
   const { loading, errorMessage } = useAuthState()
 
-  const handleLogin = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  const handleLogin = async (e: any) => {
     e.preventDefault()
-    const payload = { email, password }
+    const payload = { username, password }
     try {
       const response = await loginUser(dispatch, payload)
       if (!response.user) return
@@ -34,15 +35,15 @@ function Login(props) {
           <hr />
           <ul className={styles.inputsContainer}>
             <li>
-              <label htmlFor="email">
-                Email
+              <label htmlFor="username">
+                User name
                 <input
                   className={styles.input}
                   type="text"
-                  name="email"
-                  id="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  name="username"
+                  id="username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   disabled={loading}
                 />
               </label>
@@ -64,7 +65,7 @@ function Login(props) {
             <li>
               <button
                 disabled={loading}
-                onClick={() => handleLogin}
+                onClick={handleLogin}
                 type="submit"
                 className={styles.button}
               >

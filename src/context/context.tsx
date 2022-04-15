@@ -4,9 +4,8 @@ import { AuthReducer } from './reducer'
 
 const initialState = {
   userDetails: {
-    user: {
-      email: '',
-    },
+    email: '',
+    username: '',
   },
   token: '',
   loading: false,

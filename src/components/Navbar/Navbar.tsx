@@ -49,9 +49,9 @@ function Navbar({ history }: { history: string[] }) {
                 Log out
               </Link>
             </li>
-            <li>
+            <li className={styles.a}>
               Welcome,
-              {userDetails?.user?.email}
+              {` ${userDetails.username}!`}
             </li>
           </>
         )}

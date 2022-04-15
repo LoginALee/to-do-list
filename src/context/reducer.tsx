@@ -9,7 +9,7 @@ const user = localStorage.getItem('currentUser')
   : ''
 
 const token = localStorage.getItem('currentUser')
-  ? JSON.parse(localStorage.getItem('currentUser') ?? '').auth_token
+  ? JSON.parse(localStorage.getItem('currentUser') ?? '').token
   : ''
 
 export const initialState = {
@@ -29,14 +29,14 @@ export const AuthReducer = (initialState, action) => {
     case 'LOGIN_SUCCESS':
       return {
         ...initialState,
-        user: action.payload.user,
-        token: action.payload.auth_token,
+        userDetails: action.payload.user,
+        token: action.payload.token,
         loading: false,
       }
     case 'LOGOUT':
       return {
         ...initialState,
-        user: '',
+        userDetails: '',
         token: '',
       }
     case 'LOGIN_ERROR':

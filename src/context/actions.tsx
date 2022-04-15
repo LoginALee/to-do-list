@@ -32,3 +32,24 @@ export async function logout(dispatch) {
   localStorage.removeItem('currentUser')
   localStorage.removeItem('token')
 }
+
+export async function signUp(dispatch, signUpPayload) {
+  try {
+    dispatch({ type: 'REQUEST_SIGNUP' })
+    const response = await insecurePostToAPI(
+      JSON.stringify(signUpPayload),
+      `${ROOT_URL}/users`,
+    )
+
+    if (response.data?.user) {
+      dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data })
+      localStorage.setItem('currentUser', JSON.stringify(response.data))
+      return response.data
+    }
+
+    dispatch({ type: 'SIGNUP_ERROR', error: response.data?.errors[0] })
+  } catch (error) {
+    dispatch({ type: 'SIGNUP_ERROR', error })
+  }
+  return undefined
+}

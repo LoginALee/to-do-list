@@ -1,12 +1,18 @@
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
+import { Dispatch } from 'react'
 import { insecurePostToAPI } from '../api/requests'
+import {
+  LoginResponse,
+  LoginPayload,
+  SignUpPayload,
+} from '../interfaces/authActions'
+import { Action } from '../interfaces/authReducer'
 
 const ROOT_URL = process.env.REACT_API_URL ?? 'http://localhost:3001'
 
-export async function loginUser(dispatch, loginPayload) {
+export async function loginUser(
+  dispatch: Dispatch<Action>,
+  loginPayload: LoginPayload,
+) {
   try {
     dispatch({ type: 'REQUEST_LOGIN' })
     const response = await insecurePostToAPI(
@@ -14,26 +20,34 @@ export async function loginUser(dispatch, loginPayload) {
       `${ROOT_URL}/login`,
     )
 
-    if (response.data?.user) {
-      dispatch({ type: 'LOGIN_SUCCESS', payload: response.data })
-      localStorage.setItem('currentUser', JSON.stringify(response.data))
-      return response.data
+    const res = response.data as LoginResponse
+
+    if (res.user) {
+      dispatch({
+        type: 'LOGIN_SUCCESS',
+        payload: { userDetails: res.user, token: res.token },
+      })
+      localStorage.setItem('currentUser', JSON.stringify(res))
+      return res
     }
 
-    dispatch({ type: 'LOGIN_ERROR', error: response.data?.errors[0] })
+    dispatch({ type: 'LOGIN_ERROR', payload: { errorMessage: res.error } })
   } catch (error) {
-    dispatch({ type: 'LOGIN_ERROR', error })
+    throw new Error('Login error')
   }
   return undefined
 }
 
-export async function logout(dispatch) {
-  await dispatch({ type: 'LOGOUT' })
+export function logout(dispatch: Dispatch<Action>) {
+  dispatch({ type: 'LOGOUT' })
   localStorage.removeItem('currentUser')
   localStorage.removeItem('token')
 }
 
-export async function signUp(dispatch, signUpPayload) {
+export async function signUp(
+  dispatch: Dispatch<Action>,
+  signUpPayload: SignUpPayload,
+) {
   try {
     dispatch({ type: 'REQUEST_SIGNUP' })
     const response = await insecurePostToAPI(
@@ -41,15 +55,17 @@ export async function signUp(dispatch, signUpPayload) {
       `${ROOT_URL}/users`,
     )
 
-    if (response.data?.user) {
-      dispatch({ type: 'SIGNUP_SUCCESS', payload: response.data })
-      localStorage.setItem('currentUser', JSON.stringify(response.data))
-      return response.data
+    const res = response.data as LoginResponse
+
+    if (res.user) {
+      dispatch({ type: 'SIGNUP_SUCCESS', payload: res })
+      localStorage.setItem('currentUser', JSON.stringify(res))
+      return res
     }
 
-    dispatch({ type: 'SIGNUP_ERROR', error: response.data?.errors[0] })
+    dispatch({ type: 'LOGIN_ERROR', payload: { errorMessage: res.error } })
   } catch (error) {
-    dispatch({ type: 'SIGNUP_ERROR', error })
+    throw new Error('Logout error')
   }
   return undefined
 }

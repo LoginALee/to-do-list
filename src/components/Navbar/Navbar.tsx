@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import styles from './Navbar.module.css'
 import { useAuthDispatch, logout, useAuthState } from '../../context/index'
@@ -8,9 +7,11 @@ function Navbar({ history }: { history: string[] }) {
   const isLoggedIn = userDetails && token
   const dispatch = useAuthDispatch()
 
-  const handleLogout = async () => {
-    await logout(dispatch)
-    history.push('/login')
+  const handleLogout = () => {
+    logout(dispatch)
+    if (!isLoggedIn) {
+      history.push('/login')
+    }
   }
 
   return (

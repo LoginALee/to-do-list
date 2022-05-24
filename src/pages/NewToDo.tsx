@@ -1,16 +1,7 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
 import React, { useState } from 'react'
 import styles from './NewToDo.module.css'
 import { createToDo } from '../api/to-dos/to-dos'
 import { useAuthState } from '../context/context'
-
-interface Itask {
-  name: string
-  createdAt: Date
-}
 
 function NewToDo() {
   const [showForm, setShowForm] = useState(false)
@@ -21,7 +12,7 @@ function NewToDo() {
     setShowForm(!showForm)
   }
 
-  const submitForm = async (e: React.ChangeEvent<HTMLFormElement>) => {
+  const submitForm = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault()
     const data = {
       todo: {
@@ -29,12 +20,14 @@ function NewToDo() {
         done: false,
       },
     }
-    const response = await createToDo(token, data)
 
-    if (response.id) {
-      setTodoName('')
-      alert('To-do creado correctamente')
-    }
+    void createToDo(token ?? '', data).then((response) => {
+      console.log(response)
+      if (response?.data?.id) {
+        setTodoName('')
+        alert('To-do creado correctamente')
+      }
+    })
   }
 
   return (

@@ -1,17 +1,10 @@
-/* eslint-disable @typescript-eslint/no-unsafe-argument */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-import axios from 'axios'
+import axios, { AxiosPromise, AxiosResponse } from 'axios'
 
-const parseJSON = (resp: any) => (resp.json ? resp.json() : resp)
-
-const checkStatus = (resp: any) => {
+const checkStatus = (resp: AxiosResponse) => {
   if (resp.status >= 200 && resp.status < 300) {
-    return parseJSON(resp)
+    return resp
   }
-  throw new Error(resp)
+  throw new Error(resp.statusText)
 }
 
 export const getApiUrl = (path = '') => {
@@ -19,7 +12,7 @@ export const getApiUrl = (path = '') => {
   return url.href
 }
 
-export async function insecureFetchFromAPI(path = '') {
+export async function insecureFetchFromAPI(path = ''): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .get(requestURL, {
@@ -28,12 +21,14 @@ export async function insecureFetchFromAPI(path = '') {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
 
   return res
 }
 
-export async function insecurePatchFromAPI(data: any, path = '') {
+export async function insecurePatchFromAPI(
+  data: unknown,
+  path = '',
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .patch(requestURL, data, {
@@ -42,12 +37,14 @@ export async function insecurePatchFromAPI(data: any, path = '') {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
 
   return res
 }
 
-export async function insecurePostToAPI(data: any, path = '') {
+export async function insecurePostToAPI(
+  data: unknown,
+  path = '',
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .post(requestURL, data, {
@@ -56,12 +53,11 @@ export async function insecurePostToAPI(data: any, path = '') {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
 
   return res
 }
 
-export async function insecureDeleteToAPI(path = '') {
+export async function insecureDeleteToAPI(path = ''): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .delete(requestURL, {
@@ -70,12 +66,14 @@ export async function insecureDeleteToAPI(path = '') {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
 
   return res
 }
 
-export async function fetchFromAPI(token: string, path: string) {
+export async function fetchFromAPI(
+  token: string,
+  path: string,
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .get(requestURL, {
@@ -85,11 +83,15 @@ export async function fetchFromAPI(token: string, path: string) {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
+
   return res
 }
 
-export async function postToAPI(token: string, path: string, data: any) {
+export async function postToAPI(
+  token: string,
+  path: string,
+  data: unknown,
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .post(requestURL, data, {
@@ -99,11 +101,15 @@ export async function postToAPI(token: string, path: string, data: any) {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
+
   return res
 }
 
-export async function patchToAPI(token: string, path: string, data: any) {
+export async function patchToAPI(
+  token: string,
+  path: string,
+  data: unknown,
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .patch(requestURL, data, {
@@ -113,11 +119,14 @@ export async function patchToAPI(token: string, path: string, data: any) {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
+
   return res
 }
 
-export async function deleteToAPI(token: string, path: string) {
+export async function deleteToAPI(
+  token: string,
+  path: string,
+): Promise<AxiosPromise> {
   const requestURL = getApiUrl(path)
   const res = await axios
     .delete(requestURL, {
@@ -127,6 +136,6 @@ export async function deleteToAPI(token: string, path: string) {
       },
     })
     .then(checkStatus)
-    .catch((error) => error)
+
   return res
 }

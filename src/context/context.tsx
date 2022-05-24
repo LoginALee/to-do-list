@@ -1,19 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useReducer } from 'react'
-import { AuthReducer } from './reducer'
-
-const initialState = {
-  userDetails: {
-    email: '',
-    username: '',
-  },
-  token: '',
-  loading: false,
-  errorMessage: null,
-}
+import { Action } from '../interfaces/authReducer'
+import { initialState, AuthReducer } from './reducer'
 
 const AuthStateContext = React.createContext(initialState)
-const AuthDispatchContext = React.createContext({})
+const AuthDispatchContext = React.createContext({} as React.Dispatch<Action>)
 
 export function useAuthState() {
   const context = React.useContext(AuthStateContext)

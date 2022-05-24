@@ -37,7 +37,8 @@
         "@typescript-eslint/semi": "off",
         "no-unexpected-multiline": "error",
         "react/prop-types": "off",
-        "@typescript-eslint/no-shadow": "off"
+        "@typescript-eslint/no-shadow": "off",
+        "no-void": ["off"]
       }
     }
   ]

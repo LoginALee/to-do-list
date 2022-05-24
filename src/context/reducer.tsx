@@ -1,69 +1,67 @@
-/* eslint-disable @typescript-eslint/restrict-template-expressions */
-/* eslint-disable @typescript-eslint/no-unsafe-return */
 /* eslint-disable @typescript-eslint/no-unsafe-member-access */
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
-import React, { useReducer } from 'react'
+import { Action, ContextInitialState } from '../interfaces/authReducer'
 
-const user = localStorage.getItem('currentUser')
+const user: ContextInitialState['userDetails'] = localStorage.getItem(
+  'currentUser',
+)
   ? JSON.parse(localStorage.getItem('currentUser') ?? '').user
   : ''
 
-const token = localStorage.getItem('currentUser')
+const token: ContextInitialState['token'] = localStorage.getItem('currentUser')
   ? JSON.parse(localStorage.getItem('currentUser') ?? '').token
   : ''
 
-export const initialState = {
+export const initialState: ContextInitialState = {
   userDetails: '' || user,
   token: '' || token,
   loading: false,
   errorMessage: null,
 }
 
-export const AuthReducer = (initialState, action) => {
+export const AuthReducer = (state: ContextInitialState, action: Action) => {
   switch (action.type) {
     case 'REQUEST_LOGIN':
       return {
-        ...initialState,
+        ...state,
         loading: true,
       }
     case 'REQUEST_SIGNUP':
       return {
-        ...initialState,
+        ...state,
         loading: true,
       }
     case 'LOGIN_SUCCESS':
       return {
-        ...initialState,
-        userDetails: action.payload.user,
+        ...state,
+        userDetails: action.payload.userDetails,
         token: action.payload.token,
         loading: false,
       }
     case 'SIGNUP_SUCCESS':
       return {
-        ...initialState,
-        userDetails: action.payload.user,
+        ...state,
+        userDetails: action.payload.userDetails,
         token: action.payload.token,
         loading: false,
       }
     case 'LOGOUT':
       return {
         ...initialState,
-        userDetails: '',
-        token: '',
       }
     case 'LOGIN_ERROR':
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        errorMessage: action.error,
+        errorMessage: action.payload.errorMessage,
       }
     case 'SIGNUP_ERROR':
       return {
-        ...initialState,
+        ...state,
         loading: false,
-        errorMessage: action.error,
+        errorMessage: action.payload.errorMessage,
       }
     default:
-      throw new Error(`Unhandled action type: ${action.type}`)
+      return initialState
   }
 }

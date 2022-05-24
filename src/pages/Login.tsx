@@ -1,25 +1,20 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from 'react'
 import styles from './Login.module.css'
 import { loginUser, useAuthState, useAuthDispatch } from '../context'
 
-function Login(props) {
+function Login({ history }: { history: string[] }) {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useAuthDispatch()
   const { loading, errorMessage } = useAuthState()
 
-  const handleLogin = async (e: any) => {
+  const handleLogin = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     const payload = { username, password }
     try {
-      const response = await loginUser(dispatch, payload)
-      if (!response.user) return
-      props.history.push('/')
+      const response = loginUser(dispatch, payload)
+      if (response === undefined) return
+      history.push('/')
     } catch (error) {
       console.log(error)
     }

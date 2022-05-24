@@ -1,26 +1,21 @@
-/* eslint-disable @typescript-eslint/no-misused-promises */
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable @typescript-eslint/no-unsafe-call */
-/* eslint-disable @typescript-eslint/no-unsafe-member-access */
-/* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import React, { useState } from 'react'
 import { signUp, useAuthDispatch, useAuthState } from '../context'
 import styles from './SignUp.module.css'
 
-function SignUp(props) {
+function SignUp({ history }: { history: string[] }) {
   const [username, setUsername] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const dispatch = useAuthDispatch()
   const { loading, errorMessage } = useAuthState()
 
-  const handleSignUp = async (e: any) => {
+  const handleSignUp = (e: React.MouseEvent<HTMLElement>) => {
     e.preventDefault()
     const payload = { username, email, password }
     try {
-      const response = await signUp(dispatch, payload)
-      if (!response.user) return
-      props.history.push('/')
+      const response = signUp(dispatch, payload)
+      if (response === undefined) return
+      history.push('/')
     } catch (error) {
       console.log(error)
     }

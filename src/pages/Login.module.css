@@ -55,4 +55,8 @@
   font-weight: 300;
   letter-spacing: .09em;
   text-transform: uppercase;
+} 
+
+.error {
+  color: red;
 }

@@ -1,33 +1,9 @@
 import Navbar from '../components/Navbar/Navbar'
-import { BrowserRouter as Router, Switch } from 'react-router-dom'
-import { fireEvent, prettyDOM, render, screen } from '@testing-library/react'
+import { BrowserRouter as Router } from 'react-router-dom'
+import { fireEvent, render, screen } from '@testing-library/react'
+import { validUser } from '../mocks/user'
 import App from '../App'
-import * as context from '../context/actions'
 import userEvent from '@testing-library/user-event'
-
-jest.spyOn(Object.getPrototypeOf(window.localStorage), 'setItem')
-Object.setPrototypeOf(window.localStorage.setItem, jest.fn())
-
-const loginUserFn = jest.fn(() => {
-  const res = {
-    user: {
-      id: 1,
-      email: 'test',
-      password_digest: 'test',
-      created_at: 'test',
-      updated_at: 'test',
-      username: 'test',
-    },
-    token: 'test',
-    error: null,
-  }
-  localStorage.setItem('currentUser', JSON.stringify(res))
-  return res
-})
-
-context.loginUser = jest.fn(() => {
-  return loginUserFn
-})
 
 beforeAll(() => {
   render(
@@ -36,10 +12,6 @@ beforeAll(() => {
     </Router>,
   )
 })
-
-// afterAll(() => {
-//   localStorageMock.clear()
-// })
 
 describe('<Navbar />', () => {
   it('Has the before login links', async () => {
@@ -61,10 +33,10 @@ describe('<Navbar />', () => {
     const passwordInput = await screen.findByLabelText('Password')
     const loginBtn = await screen.getAllByText('Login')[1]
 
-    await fireEvent.change(userInput, { target: { value: 'test' } })
-    await fireEvent.change(passwordInput, { target: { value: 'test' } })
+    await fireEvent.change(userInput, { target: { value: validUser.username } })
+    await fireEvent.change(passwordInput, { target: { value: validUser.password } })
     await userEvent.click(loginBtn)
+    await screen.findByText(`Welcome, ${validUser.username}!`)
 
-    expect(context.loginUser).toHaveBeenCalledTimes(1)
   })
 })

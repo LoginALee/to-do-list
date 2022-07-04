@@ -64,5 +64,4 @@ export const userHandlers = [
       )
     }
   }),
-
 ]

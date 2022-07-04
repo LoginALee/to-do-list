@@ -1,7 +1,4 @@
-import { userHandlers } from "./user"
-import { toDosHandlers } from "./toDo"
+import { userHandlers } from './user'
+import { toDosHandlers } from './toDo'
 
-export const handlers = [
-  ...userHandlers,
-  ...toDosHandlers
-]
+export const handlers = [...userHandlers, ...toDosHandlers]

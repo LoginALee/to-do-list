@@ -64,6 +64,5 @@ describe('<Navbar />', () => {
 
     expect(signUpLink).toBeDefined()
     expect(signInLink).toBeDefined()
-
   })
 })

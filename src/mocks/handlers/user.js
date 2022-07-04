@@ -7,17 +7,19 @@ const ROOT_URL = 'http://localhost:3001'
 
 export const userHandlers = [
   rest.post(`${ROOT_URL}/login`, (req, res, ctx) => {
-    if (
-      req.body?.username === validUser.username &&
-      req.body?.password === validUser.password
-    ) {
+    const userToLogin = users.find(
+      (user) =>
+        user.password === req.body.password &&
+        user.username === req.body.username,
+    )
+    if (userToLogin) {
       sessionStorage.setItem('is-authenticated', 'true')
-      sessionStorage.setItem('userId', validUser.id)
+      sessionStorage.setItem('userId', userToLogin.id)
 
       return res(
         ctx.status(200),
         ctx.json({
-          user: validUser,
+          user: userToLogin,
           token: Math.random().toString(36).slice(-5),
         }),
       )
@@ -34,7 +36,7 @@ export const userHandlers = [
     const { username, password, email } = req.body
     if (username && password && email) {
       const newUser = {
-        id: users.length,
+        id: users.length + 1,
         username,
         password,
         email,

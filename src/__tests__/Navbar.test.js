@@ -24,7 +24,7 @@ describe('<Navbar />', () => {
     expect(signUpLink).toBeDefined()
   })
 
-  it('Has the after login links', async () => {
+  it('Can log in', async () => {
     render(<App />)
     const signInLink = await screen.findByText('Sign in')
     userEvent.click(signInLink)
@@ -41,7 +41,46 @@ describe('<Navbar />', () => {
     await screen.findByText(`Welcome, ${validUser.username}!`)
   })
 
-  it('Changes to pre-login links after logout', async () => {
+  it('Can sign up', async () => {
+    render(<App />)
+    const signUpLink = await screen.findByText('Sign up')
+    userEvent.click(signUpLink)
+
+    const emailInput = await screen.findByLabelText('Email')
+    const userInput = await screen.findByLabelText('User name')
+    const passwordInput = await screen.findByLabelText('Password')
+    const passwordConfirmInput = await screen.findByLabelText(
+      'Confirm password',
+    )
+    const signUpBtn = await screen.getAllByText('Sign up')[2]
+
+    await fireEvent.change(emailInput, { target: { value: 'John@gmail.com' } })
+    await fireEvent.change(userInput, { target: { value: 'John' } })
+    await fireEvent.change(passwordInput, {
+      target: { value: 'test' },
+    })
+    await fireEvent.change(passwordConfirmInput, {
+      target: { value: 'test' },
+    })
+    await userEvent.click(signUpBtn)
+
+    const signInLink = await screen.findByText('Sign in')
+    userEvent.click(signInLink)
+
+    const loginBtn = await screen.getAllByText('Login')[1]
+
+    const userInput2 = await screen.findByLabelText('User name')
+    const passwordInput2 = await screen.findByLabelText('Password')
+
+    await fireEvent.change(userInput2, { target: { value: 'John' } })
+    await fireEvent.change(passwordInput2, {
+      target: { value: 'test' },
+    })
+    await userEvent.click(loginBtn)
+    await screen.findByText('Welcome, John!')
+  })
+
+  it('Can log out', async () => {
     render(<App />)
     const signInLink = await screen.findByText('Sign in')
     userEvent.click(signInLink)

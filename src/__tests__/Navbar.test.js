@@ -34,9 +34,10 @@ describe('<Navbar />', () => {
     const loginBtn = await screen.getAllByText('Login')[1]
 
     await fireEvent.change(userInput, { target: { value: validUser.username } })
-    await fireEvent.change(passwordInput, { target: { value: validUser.password } })
+    await fireEvent.change(passwordInput, {
+      target: { value: validUser.password },
+    })
     await userEvent.click(loginBtn)
     await screen.findByText(`Welcome, ${validUser.username}!`)
-
   })
 })

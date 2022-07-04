@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar/Navbar'
 import { BrowserRouter as Router } from 'react-router-dom'
 import { fireEvent, render, screen } from '@testing-library/react'
-import { validUser } from '../mocks/user'
+import { validUser } from '../mocks/models/user'
 import App from '../App'
 import userEvent from '@testing-library/user-event'
 

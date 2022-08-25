@@ -36,6 +36,7 @@ function NewToDo() {
         <div>
           <h1>New To-Do</h1>
           <button
+            data-testid="addToDoBtn"
             id="showFormBtn"
             onClick={showFormHandler}
             type="button"

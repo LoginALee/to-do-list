@@ -17,7 +17,7 @@ function Navbar({ history }: { history: string[] }) {
   return (
     <nav className={styles.nav}>
       {isLoggedIn && (
-        <div className={styles.menuToggle}>
+        <div data-testid="burguer-menu" className={styles.menuToggle}>
           <input type="checkbox" />
           <span />
           <span />

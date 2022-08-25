@@ -6,8 +6,9 @@ const localToDos = [...toDos]
 const ROOT_URL = 'http://localhost:3001'
 
 export const toDosHandlers = [
-  rest.get(`${ROOT_URL}/todos/:id`, (req, res, ctx) => {
+  rest.get(`${ROOT_URL}/todos`, (req, res, ctx) => {
     const isAuthenticated = sessionStorage.getItem('is-authenticated')
+    const userId = sessionStorage.getItem('userId')
     if (!isAuthenticated) {
       return res(
         ctx.status(401),

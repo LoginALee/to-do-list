@@ -1,6 +1,6 @@
-.mainContainer{
+.mainContainer {
   width: 100vw;
-  height: 100vh;
+  height: 200vh;
   font-size: 1.8rem;
   display: flex;
   flex-direction: column;
@@ -8,25 +8,30 @@
   flex-basis: 100%;
 }
 
-.secondContainer{
+.secondContainer {
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: space-evenly;
+  height: 100vh;
 }
 
-.toDosElements{
-  border: 2px solid #8ff7a7;;
+.thirdContainer {
+  border: 1px solid #9e0608;
+  flex-basis: 50%;
+}
+
+.toDosElements {
+  border: 2px solid #8ff7a7;
   padding: 12px;
   margin-bottom: 1em;
 }
 
-.toDosElements li{
+.toDosElements li {
   list-style: none;
 }
 
-
-.mainContainer > *{
+.mainContainer > * {
   margin-top: 2.7em;
   text-align: center;
 }

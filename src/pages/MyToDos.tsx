@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
+import { DraggableData } from 'react-draggable'
 import styles from './MyToDos.module.css'
 import { getAllToDos } from '../api/to-dos/to-dos'
 import { useAuthState } from '../context/context'
@@ -8,6 +9,7 @@ import MyTodo from './MyTodo'
 function MyToDos() {
   const { token } = useAuthState()
   const [todos, setTodos] = useState<Todo[]>([])
+  const doneRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     async function getTodos() {
@@ -29,10 +31,16 @@ function MyToDos() {
           <h2>To be done ⏳</h2>
           {todos.length &&
             todos.map((toDo: Todo) => (
-              <MyTodo key={toDo.id} title={toDo.title} done={toDo.done} />
+              <MyTodo
+                key={toDo.id}
+                title={toDo.title}
+                done={toDo.done}
+                doneRef={doneRef}
+              />
             ))}
+          <MyTodo key={123} title="aaaaaaa" done={false} doneRef={doneRef} />
         </div>
-        <div className={styles.thirdContainer}>
+        <div ref={doneRef} className={styles.thirdContainer}>
           <h2>Done ✅</h2>
         </div>
       </div>

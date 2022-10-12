@@ -6,6 +6,7 @@
   --paper-dark: #e5c93d;
   --paper-color: #ffed87;
 
+  cursor: grab;
   position: relative;
   display: flex;
   justify-content: center;
@@ -17,6 +18,7 @@
   box-shadow: 3px 3px 2px var(--paper-shadow);
   transform: rotate(10deg);
   transform-origin: top left;
+  margin: 0.8em;
 }
 
 .paper p {

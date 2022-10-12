@@ -1,9 +1,48 @@
-import Draggable from 'react-draggable'
+import { useState } from 'react'
+import Draggable, {
+  DraggableData,
+  DraggableEvent,
+  DraggableEventHandler,
+} from 'react-draggable'
 import styles from './MyTodo.module.css'
 
-function MyTodo({ title, done }) {
+function MyTodo({
+  title,
+  done,
+  doneRef,
+}: {
+  title: string
+  done: boolean
+  doneRef: React.RefObject<HTMLDivElement>
+}) {
+  const [deltaPosition, setDeltaPosition] = useState<{ x: number; y: number }>({
+    x: 0,
+    y: 0,
+  })
+
+  const onStop = (e, data: DraggableData) => {
+    const { x, y } = data
+
+    if (
+      (doneRef && doneRef.current && x >= doneRef?.current?.offsetLeft) ||
+      (doneRef && doneRef.current && y >= doneRef?.current?.offsetTop)
+    ) {
+      setDeltaPosition({
+        ...deltaPosition,
+        x: doneRef?.current?.offsetLeft,
+        y: 0,
+      })
+    } else {
+      setDeltaPosition({
+        ...deltaPosition,
+        x: 0,
+        y: 0,
+      })
+    }
+  }
+
   return (
-    <Draggable>
+    <Draggable position={deltaPosition} onStop={onStop}>
       <div className={styles.paper}>
         <div className={styles.pin}>
           <div className={styles.shadow} />

@@ -113,3 +113,14 @@
     var(--pin-dark) 80%
   );
 }
+
+.trash {
+  margin-top: -0.5em;
+  margin-right: -0.7em;
+  visibility: hidden;
+  cursor: pointer;
+}
+
+.paper:hover .trash {
+  visibility: visible;
+}

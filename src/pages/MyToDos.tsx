@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from 'react'
-import { DraggableData } from 'react-draggable'
 import styles from './MyToDos.module.css'
 import { getAllToDos } from '../api/to-dos/to-dos'
 import { useAuthState } from '../context/context'
@@ -33,12 +32,12 @@ function MyToDos() {
             todos.map((toDo: Todo) => (
               <MyTodo
                 key={toDo.id}
+                id={toDo.id}
                 title={toDo.title}
                 done={toDo.done}
                 doneRef={doneRef}
               />
             ))}
-          <MyTodo key={123} title="aaaaaaa" done={false} doneRef={doneRef} />
         </div>
         <div ref={doneRef} className={styles.thirdContainer}>
           <h2>Done ✅</h2>

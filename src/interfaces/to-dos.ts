@@ -9,6 +9,7 @@ export type Todo = {
 
 export type NewTodoData = {
   todo: {
+    id?: number
     title: string
     done: boolean
   }
@@ -19,5 +20,9 @@ export type GetAllToDosResponse = {
 }
 
 export type CreateToDoResponse = {
+  data: Todo
+}
+
+export type UpdateToDoResponse = {
   data: Todo
 }

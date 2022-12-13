@@ -1,8 +1,10 @@
+/* eslint-disable no-alert */
+/* eslint-disable no-restricted-globals */
 import { useState } from 'react'
 import Draggable, { DraggableData } from 'react-draggable'
 import { TiDelete } from 'react-icons/ti'
 import styles from './MyTodo.module.css'
-import { updateToDo } from '../api/to-dos/to-dos'
+import { updateToDo, deleteToDo } from '../api/to-dos/to-dos'
 import { useAuthState } from '../context/context'
 import { NewTodoData } from '../interfaces/to-dos'
 
@@ -17,6 +19,13 @@ function MyTodo({
   done: boolean
   doneRef: React.RefObject<HTMLDivElement>
 }) {
+  const toDoData = {
+    todo: {
+      id,
+      title,
+      done: true,
+    },
+  }
   const [doneLocal, setDoneLocal] = useState<boolean>(done)
   const [deltaPosition, setDeltaPosition] = useState<{ x: number; y: number }>({
     x: doneLocal ? Number(doneRef?.current?.offsetLeft) : 0,
@@ -39,13 +48,6 @@ function MyTodo({
 
   const onStop = (e, data: DraggableData) => {
     const { x, y } = data
-    const toDoData = {
-      todo: {
-        id,
-        title,
-        done: true,
-      },
-    }
 
     if (
       (doneRef && doneRef.current && x >= doneRef?.current?.offsetLeft) ||
@@ -61,6 +63,18 @@ function MyTodo({
     }
   }
 
+  const onDelete = () => {
+    if (window.confirm('Are  you sure you want to delete this To-Do?')) {
+      void deleteToDo(token ?? '', toDoData.todo).then((response) => {
+        if (response?.status === 204) {
+          location.reload()
+        } else {
+          window.alert('Error deleting this To-Do')
+        }
+      })
+    }
+  }
+
   return (
     <Draggable position={deltaPosition} onStop={onStop}>
       <div className={styles.paper}>
@@ -71,11 +85,7 @@ function MyTodo({
         </div>
         <p>{title}</p>
         <p>{`${doneLocal ? '✅' : '⏳'}`}</p>
-        <TiDelete
-          size="1.5em"
-          className={styles.trash}
-          onClick={() => console.log('heey')}
-        />
+        <TiDelete size="1.5em" className={styles.trash} onClick={onDelete} />
       </div>
     </Draggable>
   )

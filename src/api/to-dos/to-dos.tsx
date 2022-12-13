@@ -6,6 +6,7 @@ import {
   NewTodoData,
   Todo,
   UpdateToDoResponse,
+  DeleteToDoResponse,
 } from '../../interfaces/to-dos'
 
 const ROOT_URL = process.env.REACT_API_URL ?? 'http://localhost:3001'
@@ -50,8 +51,11 @@ export const createToDo = async (
 export const deleteToDo = async (
   token: string,
   data: Todo,
-): Promise<AxiosPromise> => {
-  const response = await deleteToAPI(token, `${ROOT_URL}/todos/${data.id}`)
+): Promise<DeleteToDoResponse> => {
+  const response: DeleteToDoResponse = await deleteToAPI(
+    token,
+    `${ROOT_URL}/todos/${data.id}`,
+  )
 
   return response
 }

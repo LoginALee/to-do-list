@@ -21,6 +21,20 @@
   margin: 0.8em;
 }
 
+.title {
+  max-width: 6em;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  background: none;
+  border: none;
+  font-size: 1.4rem;
+}
+
+.paper[data-isopen='true'] {
+  left: 75%;
+}
+
 .paper p {
   margin: auto;
 }
@@ -114,13 +128,37 @@
   );
 }
 
+.columWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.iconsWrapper {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  width: 12em;
+  height: 20%;
+}
+
+.infoWrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 50%;
+  margin: 0 25%;
+}
+
 .trash {
-  margin-top: -0.5em;
-  margin-right: -0.7em;
-  visibility: hidden;
+  visibility: visible;
   cursor: pointer;
 }
 
-.paper:hover .trash {
+.edit {
+  cursor: pointer;
+}
+
+.paper:hover .trash,
+.paper:hover .edit {
   visibility: visible;
 }

@@ -7,7 +7,7 @@ import {
 } from '../interfaces/authActions'
 import { Action } from '../interfaces/authReducer'
 
-const ROOT_URL = process.env.REACT_API_URL ?? 'http://localhost:3001'
+const ROOT_URL = process.env.REACT_API_URL || 'http://localhost:3001'
 
 export async function loginUser(
   dispatch: Dispatch<Action>,
